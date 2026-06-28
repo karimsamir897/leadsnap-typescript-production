@@ -16,7 +16,7 @@ For example:
 
 \`\`\`
 async function run(client) {
-  const response = await client.public.api.v1.heatmapPoints.generateGridPoints({
+  const response = await client.heatmapPoints.generateGrid({
     grid_radius: 0,
     grid_size: 0,
     lat: 0,

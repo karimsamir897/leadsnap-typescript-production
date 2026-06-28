@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../../../core/resource';
-import { APIPromise } from '../../../../core/api-promise';
-import { RequestOptions } from '../../../../internal/request-options';
-import { path } from '../../../../internal/utils/path';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 /**
  *
@@ -43,14 +43,13 @@ export class Heatmaps extends APIResource {
    *
    * @example
    * ```ts
-   * const response =
-   *   await client.public.api.v1.heatmaps.listHeatmaps();
+   * const heatmaps = await client.heatmaps.list();
    * ```
    */
-  listHeatmaps(
-    query: HeatmapListHeatmapsParams | null | undefined = {},
+  list(
+    query: HeatmapListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<HeatmapListHeatmapsResponse> {
+  ): APIPromise<HeatmapListResponse> {
     return this._client.get('/public/api/v1/heatmaps', { query, ...options });
   }
 
@@ -60,23 +59,19 @@ export class Heatmaps extends APIResource {
    *
    * @example
    * ```ts
-   * const response =
-   *   await client.public.api.v1.heatmaps.createHeatmap({
-   *     distanceType: 'm',
-   *     grid_radius: 3495,
-   *     grid_size: 3,
-   *     keyword: ['roofing'],
-   *     lat: 44.670381143996,
-   *     lng: -88.122418774951,
-   *     place_id: 'ChIJFzfDtmDzAogRn0zn9LJaP_A',
-   *     search_type: ['google_maps'],
-   *   });
+   * const heatmap = await client.heatmaps.create({
+   *   distanceType: 'm',
+   *   grid_radius: 3495,
+   *   grid_size: 3,
+   *   keyword: ['roofing'],
+   *   lat: 44.670381143996,
+   *   lng: -88.122418774951,
+   *   place_id: 'ChIJFzfDtmDzAogRn0zn9LJaP_A',
+   *   search_type: ['google_maps'],
+   * });
    * ```
    */
-  createHeatmap(
-    body: HeatmapCreateHeatmapParams,
-    options?: RequestOptions,
-  ): APIPromise<HeatmapCreateHeatmapResponse> {
+  create(body: HeatmapCreateParams, options?: RequestOptions): APIPromise<HeatmapCreateResponse> {
     return this._client.post('/public/api/v1/heatmaps', { body, ...options });
   }
 
@@ -94,8 +89,7 @@ export class Heatmaps extends APIResource {
    *
    * @example
    * ```ts
-   * const response =
-   *   await client.public.api.v1.heatmaps.listLocations();
+   * const response = await client.heatmaps.listLocations();
    * ```
    */
   listLocations(
@@ -111,11 +105,10 @@ export class Heatmaps extends APIResource {
    *
    * @example
    * ```ts
-   * const response =
-   *   await client.public.api.v1.heatmaps.retrieveHeatmap(1482);
+   * const heatmap = await client.heatmaps.retrieve(1482);
    * ```
    */
-  retrieveHeatmap(heatmap: number, options?: RequestOptions): APIPromise<HeatmapRetrieveHeatmapResponse> {
+  retrieve(heatmap: number, options?: RequestOptions): APIPromise<HeatmapRetrieveResponse> {
     return this._client.get(path`/public/api/v1/heatmaps/${heatmap}`, options);
   }
 
@@ -125,21 +118,15 @@ export class Heatmaps extends APIResource {
    *
    * @example
    * ```ts
-   * const response =
-   *   await client.public.api.v1.heatmaps.retrieveHeatmapCompetitors(
-   *     1482,
-   *   );
+   * const response = await client.heatmaps.competitors(1482);
    * ```
    */
-  retrieveHeatmapCompetitors(
-    heatmap: number,
-    options?: RequestOptions,
-  ): APIPromise<HeatmapRetrieveHeatmapCompetitorsResponse> {
+  competitors(heatmap: number, options?: RequestOptions): APIPromise<HeatmapCompetitorsResponse> {
     return this._client.get(path`/public/api/v1/heatmaps/${heatmap}/competitors`, options);
   }
 }
 
-export interface HeatmapCreateHeatmapResponse {
+export interface HeatmapCreateResponse {
   id?: number;
 
   area?: string | null;
@@ -223,10 +210,224 @@ export interface HeatmapCreateHeatmapResponse {
   zoom_level?: string | null;
 }
 
-export interface HeatmapListHeatmapsResponse {
+export interface HeatmapRetrieveResponse {
+  id?: number;
+
+  area?: string;
+
+  ave_review_rating?: number;
+
+  average?: string;
+
+  average_position?: number;
+
+  business_name?: string;
+
+  business_place_id?: string;
+
+  created_at?: string;
+
+  grid_center_lat?: number;
+
+  grid_center_lng?: number;
+
+  grid_distance_measure?: string;
+
+  grid_point_distance?: string;
+
+  grid_point_distance_row?: number;
+
+  grid_size?: number;
+
+  keyword?: string;
+
+  keyword_seo_data?: HeatmapRetrieveResponse.KeywordSeoData;
+
+  lead_source_id?: string | null;
+
+  location?: string | null;
+
+  location_id?: string | null;
+
+  market_share?: string;
+
+  market_share_position?: number;
+
+  place?: HeatmapRetrieveResponse.Place;
+
+  place_id?: number;
+
+  points?: Array<HeatmapRetrieveResponse.Point>;
+
+  previous_ranking?: string | null;
+
+  ranking_change?: string | null;
+
+  ranking_change_percentage?: string | null;
+
+  review_count?: number;
+
+  search_type?: string;
+
+  status?: string;
+
+  status_code?: number;
+
+  tags?: Array<unknown>;
+
+  top_3_percentage?: number;
+
+  top_3_points?: number;
+
+  top_3_position?: number;
+
+  top_n?: number;
+
+  total?: number;
+
+  total_points?: number;
+
+  updated_at?: string;
+
+  zoom_level?: string;
+}
+
+export namespace HeatmapRetrieveResponse {
+  export interface KeywordSeoData {
+    id?: number;
+
+    account_id?: number;
+
+    created_at?: string;
+
+    heatmap_keyword_list_id?: number;
+
+    keyword?: string;
+
+    keyword_difficulty?: KeywordSeoData.KeywordDifficulty;
+
+    keyword_search_intents?: Array<KeywordSeoData.KeywordSearchIntent>;
+
+    search_volume?: KeywordSeoData.SearchVolume;
+
+    updated_at?: string;
+  }
+
+  export namespace KeywordSeoData {
+    export interface KeywordDifficulty {
+      id?: number;
+
+      created_at?: string;
+
+      difficulty?: number;
+
+      keyword?: string;
+
+      language_code?: string;
+
+      location_code?: string;
+
+      updated_at?: string;
+    }
+
+    export interface KeywordSearchIntent {
+      id?: number;
+
+      created_at?: string;
+
+      keyword?: string;
+
+      label?: string;
+
+      language_code?: string;
+
+      probability?: number;
+
+      updated_at?: string;
+    }
+
+    export interface SearchVolume {
+      id?: number;
+
+      competition?: string;
+
+      competition_index?: number;
+
+      cpc?: string;
+
+      created_at?: string;
+
+      high_top_of_page_bid?: string;
+
+      keyword?: string;
+
+      language_code?: string;
+
+      location_code?: string;
+
+      low_top_of_page_bid?: string;
+
+      search_volume?: number;
+
+      updated_at?: string;
+    }
+  }
+
+  export interface Place {
+    id?: number;
+
+    address?: string;
+
+    ave_review_rating?: number;
+
+    feature_id?: string;
+
+    google_place_id?: string;
+
+    google_place_serial?: string;
+
+    latitude?: string;
+
+    longitude?: string;
+
+    main_category?: string;
+
+    map_url?: string;
+
+    name?: string;
+
+    phone?: string;
+
+    place_url?: string;
+
+    ranking?: string | null;
+
+    related_categories?: Array<string>;
+
+    review_count?: number;
+
+    thumbnail_url?: string;
+
+    website_url?: string;
+  }
+
+  export interface Point {
+    id?: number;
+
+    index?: number;
+
+    lat?: string;
+
+    lng?: string;
+
+    rank?: number;
+  }
+}
+
+export interface HeatmapListResponse {
   current_page?: number;
 
-  data?: Array<HeatmapListHeatmapsResponse.Data>;
+  data?: Array<HeatmapListResponse.Data>;
 
   first_page_url?: string;
 
@@ -251,7 +452,7 @@ export interface HeatmapListHeatmapsResponse {
   total?: number;
 }
 
-export namespace HeatmapListHeatmapsResponse {
+export namespace HeatmapListResponse {
   export interface Data {
     id?: number;
 
@@ -337,6 +538,84 @@ export namespace HeatmapListHeatmapsResponse {
       ave_review_rating?: number;
 
       feature_id?: string | null;
+
+      google_place_id?: string;
+
+      google_place_serial?: string;
+
+      latitude?: string;
+
+      longitude?: string;
+
+      main_category?: string;
+
+      map_url?: string;
+
+      name?: string;
+
+      phone?: string;
+
+      place_url?: string;
+
+      ranking?: string | null;
+
+      related_categories?: Array<string>;
+
+      review_count?: number;
+
+      thumbnail_url?: string;
+
+      website_url?: string;
+    }
+  }
+}
+
+export type HeatmapCompetitorsResponse = Array<HeatmapCompetitorsResponse.HeatmapCompetitorsResponseItem>;
+
+export namespace HeatmapCompetitorsResponse {
+  export interface HeatmapCompetitorsResponseItem {
+    id?: number;
+
+    average?: number;
+
+    average_position?: number;
+
+    market_share?: string;
+
+    market_share_position?: number;
+
+    north_east?: number;
+
+    north_west?: number;
+
+    photos_count?: number;
+
+    place?: HeatmapCompetitorsResponseItem.Place;
+
+    south_east?: number;
+
+    south_west?: number;
+
+    top_20_points?: number;
+
+    top_3_percentage?: string | null;
+
+    top_3_points?: number;
+
+    top_3_position?: number;
+
+    total_points?: number;
+  }
+
+  export namespace HeatmapCompetitorsResponseItem {
+    export interface Place {
+      id?: number;
+
+      address?: string;
+
+      ave_review_rating?: number;
+
+      feature_id?: string;
 
       google_place_id?: string;
 
@@ -489,300 +768,7 @@ export namespace HeatmapListLocationsResponse {
   }
 }
 
-export interface HeatmapRetrieveHeatmapResponse {
-  id?: number;
-
-  area?: string;
-
-  ave_review_rating?: number;
-
-  average?: string;
-
-  average_position?: number;
-
-  business_name?: string;
-
-  business_place_id?: string;
-
-  created_at?: string;
-
-  grid_center_lat?: number;
-
-  grid_center_lng?: number;
-
-  grid_distance_measure?: string;
-
-  grid_point_distance?: string;
-
-  grid_point_distance_row?: number;
-
-  grid_size?: number;
-
-  keyword?: string;
-
-  keyword_seo_data?: HeatmapRetrieveHeatmapResponse.KeywordSeoData;
-
-  lead_source_id?: string | null;
-
-  location?: string | null;
-
-  location_id?: string | null;
-
-  market_share?: string;
-
-  market_share_position?: number;
-
-  place?: HeatmapRetrieveHeatmapResponse.Place;
-
-  place_id?: number;
-
-  points?: Array<HeatmapRetrieveHeatmapResponse.Point>;
-
-  previous_ranking?: string | null;
-
-  ranking_change?: string | null;
-
-  ranking_change_percentage?: string | null;
-
-  review_count?: number;
-
-  search_type?: string;
-
-  status?: string;
-
-  status_code?: number;
-
-  tags?: Array<unknown>;
-
-  top_3_percentage?: number;
-
-  top_3_points?: number;
-
-  top_3_position?: number;
-
-  top_n?: number;
-
-  total?: number;
-
-  total_points?: number;
-
-  updated_at?: string;
-
-  zoom_level?: string;
-}
-
-export namespace HeatmapRetrieveHeatmapResponse {
-  export interface KeywordSeoData {
-    id?: number;
-
-    account_id?: number;
-
-    created_at?: string;
-
-    heatmap_keyword_list_id?: number;
-
-    keyword?: string;
-
-    keyword_difficulty?: KeywordSeoData.KeywordDifficulty;
-
-    keyword_search_intents?: Array<KeywordSeoData.KeywordSearchIntent>;
-
-    search_volume?: KeywordSeoData.SearchVolume;
-
-    updated_at?: string;
-  }
-
-  export namespace KeywordSeoData {
-    export interface KeywordDifficulty {
-      id?: number;
-
-      created_at?: string;
-
-      difficulty?: number;
-
-      keyword?: string;
-
-      language_code?: string;
-
-      location_code?: string;
-
-      updated_at?: string;
-    }
-
-    export interface KeywordSearchIntent {
-      id?: number;
-
-      created_at?: string;
-
-      keyword?: string;
-
-      label?: string;
-
-      language_code?: string;
-
-      probability?: number;
-
-      updated_at?: string;
-    }
-
-    export interface SearchVolume {
-      id?: number;
-
-      competition?: string;
-
-      competition_index?: number;
-
-      cpc?: string;
-
-      created_at?: string;
-
-      high_top_of_page_bid?: string;
-
-      keyword?: string;
-
-      language_code?: string;
-
-      location_code?: string;
-
-      low_top_of_page_bid?: string;
-
-      search_volume?: number;
-
-      updated_at?: string;
-    }
-  }
-
-  export interface Place {
-    id?: number;
-
-    address?: string;
-
-    ave_review_rating?: number;
-
-    feature_id?: string;
-
-    google_place_id?: string;
-
-    google_place_serial?: string;
-
-    latitude?: string;
-
-    longitude?: string;
-
-    main_category?: string;
-
-    map_url?: string;
-
-    name?: string;
-
-    phone?: string;
-
-    place_url?: string;
-
-    ranking?: string | null;
-
-    related_categories?: Array<string>;
-
-    review_count?: number;
-
-    thumbnail_url?: string;
-
-    website_url?: string;
-  }
-
-  export interface Point {
-    id?: number;
-
-    index?: number;
-
-    lat?: string;
-
-    lng?: string;
-
-    rank?: number;
-  }
-}
-
-export type HeatmapRetrieveHeatmapCompetitorsResponse =
-  Array<HeatmapRetrieveHeatmapCompetitorsResponse.HeatmapRetrieveHeatmapCompetitorsResponseItem>;
-
-export namespace HeatmapRetrieveHeatmapCompetitorsResponse {
-  export interface HeatmapRetrieveHeatmapCompetitorsResponseItem {
-    id?: number;
-
-    average?: number;
-
-    average_position?: number;
-
-    market_share?: string;
-
-    market_share_position?: number;
-
-    north_east?: number;
-
-    north_west?: number;
-
-    photos_count?: number;
-
-    place?: HeatmapRetrieveHeatmapCompetitorsResponseItem.Place;
-
-    south_east?: number;
-
-    south_west?: number;
-
-    top_20_points?: number;
-
-    top_3_percentage?: string | null;
-
-    top_3_points?: number;
-
-    top_3_position?: number;
-
-    total_points?: number;
-  }
-
-  export namespace HeatmapRetrieveHeatmapCompetitorsResponseItem {
-    export interface Place {
-      id?: number;
-
-      address?: string;
-
-      ave_review_rating?: number;
-
-      feature_id?: string;
-
-      google_place_id?: string;
-
-      google_place_serial?: string;
-
-      latitude?: string;
-
-      longitude?: string;
-
-      main_category?: string;
-
-      map_url?: string;
-
-      name?: string;
-
-      phone?: string;
-
-      place_url?: string;
-
-      ranking?: string | null;
-
-      related_categories?: Array<string>;
-
-      review_count?: number;
-
-      thumbnail_url?: string;
-
-      website_url?: string;
-    }
-  }
-}
-
-export interface HeatmapListHeatmapsParams {
+export interface HeatmapListParams {
   /**
    * Filter by business name (partial match).
    */
@@ -866,7 +852,7 @@ export interface HeatmapListHeatmapsParams {
   sort?: string;
 }
 
-export interface HeatmapCreateHeatmapParams {
+export interface HeatmapCreateParams {
   /**
    * Unit for the radius. Accepted: `km`, `mi`, `m`.
    */
@@ -922,12 +908,12 @@ export interface HeatmapCreateHeatmapParams {
    * [Generate grid points](#tag/Heatmap-Points/POST/public/api/v1/heatmap/grid-points)
    * endpoint to compute coordinates from a grid config and pass them here.
    */
-  points?: Array<HeatmapCreateHeatmapParams.Point | null>;
+  points?: Array<HeatmapCreateParams.Point | null>;
 
   sibling_of?: number | null;
 }
 
-export namespace HeatmapCreateHeatmapParams {
+export namespace HeatmapCreateParams {
   export interface Point {
     /**
      * Latitude of the point.
@@ -1004,13 +990,13 @@ export interface HeatmapListLocationsParams {
 
 export declare namespace Heatmaps {
   export {
-    type HeatmapCreateHeatmapResponse as HeatmapCreateHeatmapResponse,
-    type HeatmapListHeatmapsResponse as HeatmapListHeatmapsResponse,
+    type HeatmapCreateResponse as HeatmapCreateResponse,
+    type HeatmapRetrieveResponse as HeatmapRetrieveResponse,
+    type HeatmapListResponse as HeatmapListResponse,
+    type HeatmapCompetitorsResponse as HeatmapCompetitorsResponse,
     type HeatmapListLocationsResponse as HeatmapListLocationsResponse,
-    type HeatmapRetrieveHeatmapResponse as HeatmapRetrieveHeatmapResponse,
-    type HeatmapRetrieveHeatmapCompetitorsResponse as HeatmapRetrieveHeatmapCompetitorsResponse,
-    type HeatmapListHeatmapsParams as HeatmapListHeatmapsParams,
-    type HeatmapCreateHeatmapParams as HeatmapCreateHeatmapParams,
+    type HeatmapListParams as HeatmapListParams,
+    type HeatmapCreateParams as HeatmapCreateParams,
     type HeatmapListLocationsParams as HeatmapListLocationsParams,
   };
 }

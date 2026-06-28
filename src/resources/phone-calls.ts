@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../../../core/resource';
-import { APIPromise } from '../../../../core/api-promise';
-import { RequestOptions } from '../../../../internal/request-options';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
 
 /**
  *
@@ -19,33 +19,32 @@ export class PhoneCalls extends APIResource {
    *
    * @example
    * ```ts
-   * const response =
-   *   await client.public.api.v1.phoneCalls.listPhoneCalls();
+   * const phoneCalls = await client.phoneCalls.list();
    * ```
    */
-  listPhoneCalls(
-    query: PhoneCallListPhoneCallsParams | null | undefined = {},
+  list(
+    query: PhoneCallListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<PhoneCallListPhoneCallsResponse> {
+  ): APIPromise<PhoneCallListResponse> {
     return this._client.get('/public/api/v1/phone-calls', { query, ...options });
   }
 }
 
-export interface PhoneCallListPhoneCallsResponse {
+export interface PhoneCallListResponse {
   current_page?: number;
 
-  data?: Array<PhoneCallListPhoneCallsResponse.Data>;
+  data?: Array<PhoneCallListResponse.Data>;
 
   last_page?: number;
 
-  meta?: PhoneCallListPhoneCallsResponse.Meta;
+  meta?: PhoneCallListResponse.Meta;
 
   per_page?: number;
 
   total?: number;
 }
 
-export namespace PhoneCallListPhoneCallsResponse {
+export namespace PhoneCallListResponse {
   export interface Data {
     id?: number;
 
@@ -117,7 +116,7 @@ export namespace PhoneCallListPhoneCallsResponse {
   }
 }
 
-export interface PhoneCallListPhoneCallsParams {
+export interface PhoneCallListParams {
   /**
    * Filter by client (lead group) ids.
    */
@@ -177,7 +176,7 @@ export interface PhoneCallListPhoneCallsParams {
 
 export declare namespace PhoneCalls {
   export {
-    type PhoneCallListPhoneCallsResponse as PhoneCallListPhoneCallsResponse,
-    type PhoneCallListPhoneCallsParams as PhoneCallListPhoneCallsParams,
+    type PhoneCallListResponse as PhoneCallListResponse,
+    type PhoneCallListParams as PhoneCallListParams,
   };
 }

@@ -9,8 +9,8 @@ const client = new ThriveMcp({
 
 describe('resource heatmaps', () => {
   // Mock server tests are disabled
-  test.skip('listHeatmaps', async () => {
-    const responsePromise = client.public.api.v1.heatmaps.listHeatmaps();
+  test.skip('list', async () => {
+    const responsePromise = client.heatmaps.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,10 +21,10 @@ describe('resource heatmaps', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('listHeatmaps: request options and params are passed correctly', async () => {
+  test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.public.api.v1.heatmaps.listHeatmaps(
+      client.heatmaps.list(
         {
           'filter[business_name]': 'Green City',
           'filter[company_id]': 3,
@@ -48,8 +48,8 @@ describe('resource heatmaps', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('createHeatmap: only required params', async () => {
-    const responsePromise = client.public.api.v1.heatmaps.createHeatmap({
+  test.skip('create: only required params', async () => {
+    const responsePromise = client.heatmaps.create({
       distanceType: 'm',
       grid_radius: 3495,
       grid_size: 3,
@@ -69,8 +69,8 @@ describe('resource heatmaps', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('createHeatmap: required and optional params', async () => {
-    const response = await client.public.api.v1.heatmaps.createHeatmap({
+  test.skip('create: required and optional params', async () => {
+    const response = await client.heatmaps.create({
       distanceType: 'm',
       grid_radius: 3495,
       grid_size: 3,
@@ -90,7 +90,7 @@ describe('resource heatmaps', () => {
 
   // Mock server tests are disabled
   test.skip('listLocations', async () => {
-    const responsePromise = client.public.api.v1.heatmaps.listLocations();
+    const responsePromise = client.heatmaps.listLocations();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -104,7 +104,7 @@ describe('resource heatmaps', () => {
   test.skip('listLocations: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.public.api.v1.heatmaps.listLocations(
+      client.heatmaps.listLocations(
         {
           'filter[address]': '123 Main St',
           'filter[city]': 'Green Bay',
@@ -124,8 +124,8 @@ describe('resource heatmaps', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('retrieveHeatmap', async () => {
-    const responsePromise = client.public.api.v1.heatmaps.retrieveHeatmap(1482);
+  test.skip('retrieve', async () => {
+    const responsePromise = client.heatmaps.retrieve(1482);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -136,8 +136,8 @@ describe('resource heatmaps', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('retrieveHeatmapCompetitors', async () => {
-    const responsePromise = client.public.api.v1.heatmaps.retrieveHeatmapCompetitors(1482);
+  test.skip('competitors', async () => {
+    const responsePromise = client.heatmaps.competitors(1482);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

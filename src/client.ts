@@ -17,7 +17,52 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import { Public } from './resources/public/public';
+import {
+  ContactConversationsParams,
+  ContactConversationsResponse,
+  ContactListParams,
+  ContactListResponse,
+  ContactRetrieveResponse,
+  ContactTimelineParams,
+  ContactTimelineResponse,
+  Contacts,
+} from './resources/contacts';
+import {
+  FormSubmissionListParams,
+  FormSubmissionListResponse,
+  FormSubmissions,
+} from './resources/form-submissions';
+import {
+  HeatmapPointGenerateGridParams,
+  HeatmapPointGenerateGridResponse,
+  HeatmapPointRetrieveParams,
+  HeatmapPointRetrieveResponse,
+  HeatmapPoints,
+} from './resources/heatmap-points';
+import {
+  HeatmapScheduleCreateParams,
+  HeatmapScheduleCreateResponse,
+  HeatmapScheduleListParams,
+  HeatmapScheduleListResponse,
+  HeatmapSchedulePauseResponse,
+  HeatmapScheduleResumeResponse,
+  HeatmapScheduleRetrieveResponse,
+  HeatmapScheduleUpdateParams,
+  HeatmapScheduleUpdateResponse,
+  HeatmapSchedules,
+} from './resources/heatmap-schedules';
+import {
+  HeatmapCompetitorsResponse,
+  HeatmapCreateParams,
+  HeatmapCreateResponse,
+  HeatmapListLocationsParams,
+  HeatmapListLocationsResponse,
+  HeatmapListParams,
+  HeatmapListResponse,
+  HeatmapRetrieveResponse,
+  Heatmaps,
+} from './resources/heatmaps';
+import { PhoneCallListParams, PhoneCallListResponse, PhoneCalls } from './resources/phone-calls';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -755,13 +800,109 @@ export class ThriveMcp {
 
   static toFile = Uploads.toFile;
 
-  public: API.Public = new API.Public(this);
+  /**
+   *
+   * Read-only access to CRM contacts. A contact is created for every lead (phone
+   * call, form submission, SMS, email), so this is the canonical people directory.
+   */
+  contacts: API.Contacts = new API.Contacts(this);
+  /**
+   *
+   * Read-only access to website form submissions.
+   */
+  formSubmissions: API.FormSubmissions = new API.FormSubmissions(this);
+  /**
+   *
+   * Retrieve individual grid points within a heatmap, including their ranking data and organic search results.
+   */
+  heatmapPoints: API.HeatmapPoints = new API.HeatmapPoints(this);
+  /**
+   *
+   * Create and manage automated heatmap schedules. Schedules run heatmaps on a recurring interval (weekly, monthly, or custom).
+   */
+  heatmapSchedules: API.HeatmapSchedules = new API.HeatmapSchedules(this);
+  /**
+   *
+   * Create, retrieve, re-run and delete heatmaps.
+   *
+   * The core object of a heatmap is a **Google Place** — any business or location that has a Google Place ID can be used as the target of a heatmap, regardless of whether it is managed by the account. The place is always returned in the `place` object.
+   *
+   * If the targeted place is also a **location managed by the account** (i.e. connected via Google Business Profile), it is additionally exposed in the `location` object for clarity. This allows you to cross-reference heatmap results with your managed location data such as review stats, GMB insights, and citation subscriptions.
+   *
+   * To get the `place_id` of a managed location, use the [List locations](#tag/Heatmaps/GET/public/api/v1/heatmaps/locations) endpoint.
+   */
+  heatmaps: API.Heatmaps = new API.Heatmaps(this);
+  /**
+   *
+   * Read-only access to phone calls across LeadSnap Phone System, CallRail and
+   * CallSling (the unified `calls` table).
+   */
+  phoneCalls: API.PhoneCalls = new API.PhoneCalls(this);
 }
 
-ThriveMcp.Public = Public;
+ThriveMcp.Contacts = Contacts;
+ThriveMcp.FormSubmissions = FormSubmissions;
+ThriveMcp.HeatmapPoints = HeatmapPoints;
+ThriveMcp.HeatmapSchedules = HeatmapSchedules;
+ThriveMcp.Heatmaps = Heatmaps;
+ThriveMcp.PhoneCalls = PhoneCalls;
 
 export declare namespace ThriveMcp {
   export type RequestOptions = Opts.RequestOptions;
 
-  export { Public as Public };
+  export {
+    Contacts as Contacts,
+    type ContactRetrieveResponse as ContactRetrieveResponse,
+    type ContactListResponse as ContactListResponse,
+    type ContactConversationsResponse as ContactConversationsResponse,
+    type ContactTimelineResponse as ContactTimelineResponse,
+    type ContactListParams as ContactListParams,
+    type ContactTimelineParams as ContactTimelineParams,
+    type ContactConversationsParams as ContactConversationsParams,
+  };
+
+  export {
+    FormSubmissions as FormSubmissions,
+    type FormSubmissionListResponse as FormSubmissionListResponse,
+    type FormSubmissionListParams as FormSubmissionListParams,
+  };
+
+  export {
+    HeatmapPoints as HeatmapPoints,
+    type HeatmapPointRetrieveResponse as HeatmapPointRetrieveResponse,
+    type HeatmapPointGenerateGridResponse as HeatmapPointGenerateGridResponse,
+    type HeatmapPointGenerateGridParams as HeatmapPointGenerateGridParams,
+    type HeatmapPointRetrieveParams as HeatmapPointRetrieveParams,
+  };
+
+  export {
+    HeatmapSchedules as HeatmapSchedules,
+    type HeatmapScheduleCreateResponse as HeatmapScheduleCreateResponse,
+    type HeatmapScheduleRetrieveResponse as HeatmapScheduleRetrieveResponse,
+    type HeatmapScheduleUpdateResponse as HeatmapScheduleUpdateResponse,
+    type HeatmapScheduleListResponse as HeatmapScheduleListResponse,
+    type HeatmapSchedulePauseResponse as HeatmapSchedulePauseResponse,
+    type HeatmapScheduleResumeResponse as HeatmapScheduleResumeResponse,
+    type HeatmapScheduleListParams as HeatmapScheduleListParams,
+    type HeatmapScheduleCreateParams as HeatmapScheduleCreateParams,
+    type HeatmapScheduleUpdateParams as HeatmapScheduleUpdateParams,
+  };
+
+  export {
+    Heatmaps as Heatmaps,
+    type HeatmapCreateResponse as HeatmapCreateResponse,
+    type HeatmapRetrieveResponse as HeatmapRetrieveResponse,
+    type HeatmapListResponse as HeatmapListResponse,
+    type HeatmapCompetitorsResponse as HeatmapCompetitorsResponse,
+    type HeatmapListLocationsResponse as HeatmapListLocationsResponse,
+    type HeatmapListParams as HeatmapListParams,
+    type HeatmapCreateParams as HeatmapCreateParams,
+    type HeatmapListLocationsParams as HeatmapListLocationsParams,
+  };
+
+  export {
+    PhoneCalls as PhoneCalls,
+    type PhoneCallListResponse as PhoneCallListResponse,
+    type PhoneCallListParams as PhoneCallListParams,
+  };
 }

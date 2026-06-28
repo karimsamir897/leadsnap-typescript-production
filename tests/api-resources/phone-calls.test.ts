@@ -9,8 +9,8 @@ const client = new ThriveMcp({
 
 describe('resource phoneCalls', () => {
   // Mock server tests are disabled
-  test.skip('listPhoneCalls', async () => {
-    const responsePromise = client.public.api.v1.phoneCalls.listPhoneCalls();
+  test.skip('list', async () => {
+    const responsePromise = client.phoneCalls.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,10 +21,10 @@ describe('resource phoneCalls', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('listPhoneCalls: request options and params are passed correctly', async () => {
+  test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.public.api.v1.phoneCalls.listPhoneCalls(
+      client.phoneCalls.list(
         {
           client: [5],
           company_id: 3,
