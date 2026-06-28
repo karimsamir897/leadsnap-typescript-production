@@ -9,8 +9,8 @@ const client = new ThriveMcp({
 
 describe('resource heatmapPoints', () => {
   // Mock server tests are disabled
-  test.skip('generateGridPoints: only required params', async () => {
-    const responsePromise = client.public.api.v1.heatmapPoints.generateGridPoints({
+  test.skip('generateGrid: only required params', async () => {
+    const responsePromise = client.heatmapPoints.generateGrid({
       grid_radius: 3495,
       grid_size: 3,
       lat: 44.670381143996,
@@ -26,8 +26,8 @@ describe('resource heatmapPoints', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('generateGridPoints: required and optional params', async () => {
-    const response = await client.public.api.v1.heatmapPoints.generateGridPoints({
+  test.skip('generateGrid: required and optional params', async () => {
+    const response = await client.heatmapPoints.generateGrid({
       grid_radius: 3495,
       grid_size: 3,
       lat: 44.670381143996,
@@ -37,10 +37,8 @@ describe('resource heatmapPoints', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('retrieveHeatmapPoint: only required params', async () => {
-    const responsePromise = client.public.api.v1.heatmapPoints.retrieveHeatmapPoint(129410, {
-      heatmap_id: 425591,
-    });
+  test.skip('retrieve: only required params', async () => {
+    const responsePromise = client.heatmapPoints.retrieve(129410, { heatmap_id: 425591 });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -51,9 +49,7 @@ describe('resource heatmapPoints', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('retrieveHeatmapPoint: required and optional params', async () => {
-    const response = await client.public.api.v1.heatmapPoints.retrieveHeatmapPoint(129410, {
-      heatmap_id: 425591,
-    });
+  test.skip('retrieve: required and optional params', async () => {
+    const response = await client.heatmapPoints.retrieve(129410, { heatmap_id: 425591 });
   });
 });

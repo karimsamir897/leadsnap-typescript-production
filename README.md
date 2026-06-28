@@ -36,7 +36,7 @@ const client = new ThriveMcp({
   environment: 'Thrive', // or 'Leadsnap' | 'Staging' | 'Local'; defaults to 'Leadsnap'
 });
 
-const response = await client.public.api.v1.heatmapPoints.generateGridPoints({
+const response = await client.heatmapPoints.generateGrid({
   grid_radius: 0,
   grid_size: 0,
   lat: 0,
@@ -59,14 +59,14 @@ const client = new ThriveMcp({
   environment: 'Thrive', // or 'Leadsnap' | 'Staging' | 'Local'; defaults to 'Leadsnap'
 });
 
-const params: ThriveMcp.Public.API.V1.HeatmapPointGenerateGridPointsParams = {
+const params: ThriveMcp.HeatmapPointGenerateGridParams = {
   grid_radius: 0,
   grid_size: 0,
   lat: 0,
   lng: 0,
 };
-const response: ThriveMcp.Public.API.V1.HeatmapPointGenerateGridPointsResponse =
-  await client.public.api.v1.heatmapPoints.generateGridPoints(params);
+const response: ThriveMcp.HeatmapPointGenerateGridResponse =
+  await client.heatmapPoints.generateGrid(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -79,8 +79,8 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const response = await client.public.api.v1.heatmapPoints
-  .generateGridPoints({
+const response = await client.heatmapPoints
+  .generateGrid({
     grid_radius: 0,
     grid_size: 0,
     lat: 0,
@@ -126,7 +126,7 @@ const client = new ThriveMcp({
 });
 
 // Or, configure per-request:
-await client.public.api.v1.heatmapPoints.generateGridPoints({
+await client.heatmapPoints.generateGrid({
   grid_radius: 0,
   grid_size: 0,
   lat: 0,
@@ -148,7 +148,7 @@ const client = new ThriveMcp({
 });
 
 // Override per-request:
-await client.public.api.v1.heatmapPoints.generateGridPoints({
+await client.heatmapPoints.generateGrid({
   grid_radius: 0,
   grid_size: 0,
   lat: 0,
@@ -176,8 +176,8 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const client = new ThriveMcp();
 
-const response = await client.public.api.v1.heatmapPoints
-  .generateGridPoints({
+const response = await client.heatmapPoints
+  .generateGrid({
     grid_radius: 0,
     grid_size: 0,
     lat: 0,
@@ -187,8 +187,8 @@ const response = await client.public.api.v1.heatmapPoints
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: response, response: raw } = await client.public.api.v1.heatmapPoints
-  .generateGridPoints({
+const { data: response, response: raw } = await client.heatmapPoints
+  .generateGrid({
     grid_radius: 0,
     grid_size: 0,
     lat: 0,
@@ -276,7 +276,7 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.public.api.v1.heatmapPoints.generateGridPoints({
+client.heatmapPoints.generateGrid({
   // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',

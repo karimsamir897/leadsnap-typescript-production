@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../../../core/resource';
-import { APIPromise } from '../../../../core/api-promise';
-import { RequestOptions } from '../../../../internal/request-options';
-import { path } from '../../../../internal/utils/path';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 /**
  *
@@ -36,14 +36,14 @@ export class HeatmapSchedules extends APIResource {
    *
    * @example
    * ```ts
-   * const response =
-   *   await client.public.api.v1.heatmapSchedules.listSchedules();
+   * const heatmapSchedules =
+   *   await client.heatmapSchedules.list();
    * ```
    */
-  listSchedules(
-    query: HeatmapScheduleListSchedulesParams | null | undefined = {},
+  list(
+    query: HeatmapScheduleListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<HeatmapScheduleListSchedulesResponse> {
+  ): APIPromise<HeatmapScheduleListResponse> {
     return this._client.get('/public/api/v1/heatmap/schedules', { query, ...options });
   }
 
@@ -53,35 +53,33 @@ export class HeatmapSchedules extends APIResource {
    *
    * @example
    * ```ts
-   * const response =
-   *   await client.public.api.v1.heatmapSchedules.createSchedule(
-   *     {
-   *       heatmap_config: {
-   *         grid_points: [
-   *           { lat: 28.174798245111, lng: -81.429216072674 },
-   *           { lat: 28.174798245111, lng: -81.457292244549 },
-   *           { lat: 28.198987716187, lng: -81.401139900799 },
-   *           { lat: 28.198987716187, lng: -81.429216072674 },
-   *           { lat: 28.198987716187, lng: -81.457292244549 },
-   *         ],
-   *         keywords: [
-   *           'Plumbing',
-   *           'general contractor',
-   *           'electrician',
-   *           'hvac',
-   *         ],
-   *         name: 'Weekly Roofing Check',
-   *         place_id: 2795512,
-   *       },
-   *       schedule_config: { repeat_type: 'custom-month' },
+   * const heatmapSchedule =
+   *   await client.heatmapSchedules.create({
+   *     heatmap_config: {
+   *       grid_points: [
+   *         { lat: 28.174798245111, lng: -81.429216072674 },
+   *         { lat: 28.174798245111, lng: -81.457292244549 },
+   *         { lat: 28.198987716187, lng: -81.401139900799 },
+   *         { lat: 28.198987716187, lng: -81.429216072674 },
+   *         { lat: 28.198987716187, lng: -81.457292244549 },
+   *       ],
+   *       keywords: [
+   *         'Plumbing',
+   *         'general contractor',
+   *         'electrician',
+   *         'hvac',
+   *       ],
+   *       name: 'Weekly Roofing Check',
+   *       place_id: 2795512,
    *     },
-   *   );
+   *     schedule_config: { repeat_type: 'custom-month' },
+   *   });
    * ```
    */
-  createSchedule(
-    body: HeatmapScheduleCreateScheduleParams,
+  create(
+    body: HeatmapScheduleCreateParams,
     options?: RequestOptions,
-  ): APIPromise<HeatmapScheduleCreateScheduleResponse> {
+  ): APIPromise<HeatmapScheduleCreateResponse> {
     return this._client.post('/public/api/v1/heatmap/schedules', { body, ...options });
   }
 
@@ -91,16 +89,11 @@ export class HeatmapSchedules extends APIResource {
    *
    * @example
    * ```ts
-   * const response =
-   *   await client.public.api.v1.heatmapSchedules.retrieveSchedule(
-   *     10,
-   *   );
+   * const heatmapSchedule =
+   *   await client.heatmapSchedules.retrieve(10);
    * ```
    */
-  retrieveSchedule(
-    schedule: number,
-    options?: RequestOptions,
-  ): APIPromise<HeatmapScheduleRetrieveScheduleResponse> {
+  retrieve(schedule: number, options?: RequestOptions): APIPromise<HeatmapScheduleRetrieveResponse> {
     return this._client.get(path`/public/api/v1/heatmap/schedules/${schedule}`, options);
   }
 
@@ -110,24 +103,21 @@ export class HeatmapSchedules extends APIResource {
    *
    * @example
    * ```ts
-   * const response =
-   *   await client.public.api.v1.heatmapSchedules.updateSchedule(
-   *     89465,
-   *     {
-   *       heatmap_config: {
-   *         name: 'Weekly Roofing Check Updated',
-   *         place_id: 12,
-   *       },
-   *       schedule_config: { repeat_type: 'month' },
+   * const heatmapSchedule =
+   *   await client.heatmapSchedules.update(89465, {
+   *     heatmap_config: {
+   *       name: 'Weekly Roofing Check Updated',
+   *       place_id: 12,
    *     },
-   *   );
+   *     schedule_config: { repeat_type: 'month' },
+   *   });
    * ```
    */
-  updateSchedule(
+  update(
     scheduleID: number,
-    body: HeatmapScheduleUpdateScheduleParams,
+    body: HeatmapScheduleUpdateParams,
     options?: RequestOptions,
-  ): APIPromise<HeatmapScheduleUpdateScheduleResponse> {
+  ): APIPromise<HeatmapScheduleUpdateResponse> {
     return this._client.patch(path`/public/api/v1/heatmap/schedules/${scheduleID}`, { body, ...options });
   }
 
@@ -136,16 +126,10 @@ export class HeatmapSchedules extends APIResource {
    *
    * @example
    * ```ts
-   * const response =
-   *   await client.public.api.v1.heatmapSchedules.pauseSchedule(
-   *     10,
-   *   );
+   * const response = await client.heatmapSchedules.pause(10);
    * ```
    */
-  pauseSchedule(
-    scheduleID: number,
-    options?: RequestOptions,
-  ): APIPromise<HeatmapSchedulePauseScheduleResponse> {
+  pause(scheduleID: number, options?: RequestOptions): APIPromise<HeatmapSchedulePauseResponse> {
     return this._client.post(path`/public/api/v1/heatmap/schedules/${scheduleID}/pause`, options);
   }
 
@@ -154,28 +138,22 @@ export class HeatmapSchedules extends APIResource {
    *
    * @example
    * ```ts
-   * const response =
-   *   await client.public.api.v1.heatmapSchedules.resumeSchedule(
-   *     10,
-   *   );
+   * const response = await client.heatmapSchedules.resume(10);
    * ```
    */
-  resumeSchedule(
-    scheduleID: number,
-    options?: RequestOptions,
-  ): APIPromise<HeatmapScheduleResumeScheduleResponse> {
+  resume(scheduleID: number, options?: RequestOptions): APIPromise<HeatmapScheduleResumeResponse> {
     return this._client.post(path`/public/api/v1/heatmap/schedules/${scheduleID}/resume`, options);
   }
 }
 
-export interface HeatmapScheduleCreateScheduleResponse {
+export interface HeatmapScheduleCreateResponse {
   id?: number;
 
   draw_type?: string;
 
   google_location?: string | null;
 
-  grid_points?: Array<HeatmapScheduleCreateScheduleResponse.GridPoint>;
+  grid_points?: Array<HeatmapScheduleCreateResponse.GridPoint>;
 
   grid_size?: number;
 
@@ -191,13 +169,13 @@ export interface HeatmapScheduleCreateScheduleResponse {
 
   name?: string;
 
-  place?: HeatmapScheduleCreateScheduleResponse.Place;
+  place?: HeatmapScheduleCreateResponse.Place;
 
   place_id?: number;
 
   radius?: number;
 
-  schedule_config?: HeatmapScheduleCreateScheduleResponse.ScheduleConfig;
+  schedule_config?: HeatmapScheduleCreateResponse.ScheduleConfig;
 
   status?: string;
 
@@ -206,7 +184,7 @@ export interface HeatmapScheduleCreateScheduleResponse {
   zoom_level?: string | null;
 }
 
-export namespace HeatmapScheduleCreateScheduleResponse {
+export namespace HeatmapScheduleCreateResponse {
   export interface GridPoint {
     lat?: number;
 
@@ -284,10 +262,242 @@ export namespace HeatmapScheduleCreateScheduleResponse {
   }
 }
 
-export interface HeatmapScheduleListSchedulesResponse {
+export interface HeatmapScheduleRetrieveResponse {
+  id?: number;
+
+  draw_type?: string | null;
+
+  google_location?: string | null;
+
+  grid_points?: Array<HeatmapScheduleRetrieveResponse.GridPoint>;
+
+  grid_size?: number;
+
+  keywords?: Array<string>;
+
+  lat?: string;
+
+  lead_source_id?: string | null;
+
+  length_unit?: string;
+
+  lng?: string;
+
+  name?: string;
+
+  place?: HeatmapScheduleRetrieveResponse.Place;
+
+  place_id?: number;
+
+  radius?: number;
+
+  schedule_config?: HeatmapScheduleRetrieveResponse.ScheduleConfig;
+
+  status?: string;
+
+  stop_reason?: string;
+
+  zoom_level?: string | null;
+}
+
+export namespace HeatmapScheduleRetrieveResponse {
+  export interface GridPoint {
+    lat?: string;
+
+    lng?: string;
+  }
+
+  export interface Place {
+    id?: number;
+
+    address?: string;
+
+    ave_review_rating?: number;
+
+    feature_id?: string;
+
+    google_place_id?: string;
+
+    google_place_serial?: string;
+
+    latitude?: string;
+
+    longitude?: string;
+
+    main_category?: string;
+
+    map_url?: string;
+
+    name?: string;
+
+    phone?: string;
+
+    place_url?: string;
+
+    ranking?: string | null;
+
+    related_categories?: Array<string>;
+
+    review_count?: number;
+
+    thumbnail_url?: string;
+
+    website_url?: string;
+  }
+
+  export interface ScheduleConfig {
+    id?: number;
+
+    ai_recurring?: number;
+
+    created_at?: string;
+
+    delete_oldpost_on_recurring?: number;
+
+    is_recurring?: number;
+
+    last_schedule_ran_at?: string | null;
+
+    recurring_count?: number;
+
+    repeat_every?: number;
+
+    repeat_on?: string;
+
+    repeat_type?: string;
+
+    scheduled_at?: string;
+
+    status?: string;
+
+    stop_reason?: string;
+
+    timezone?: string;
+
+    updated_at?: string;
+  }
+}
+
+export interface HeatmapScheduleUpdateResponse {
+  id?: number;
+
+  draw_type?: string;
+
+  google_location?: string | null;
+
+  grid_points?: Array<HeatmapScheduleUpdateResponse.GridPoint>;
+
+  grid_size?: number;
+
+  keywords?: Array<string>;
+
+  lat?: number;
+
+  lead_source_id?: string | null;
+
+  length_unit?: string;
+
+  lng?: number;
+
+  name?: string;
+
+  place?: HeatmapScheduleUpdateResponse.Place;
+
+  place_id?: number;
+
+  radius?: number;
+
+  schedule_config?: HeatmapScheduleUpdateResponse.ScheduleConfig;
+
+  status?: string;
+
+  stop_reason?: string;
+
+  zoom_level?: string | null;
+}
+
+export namespace HeatmapScheduleUpdateResponse {
+  export interface GridPoint {
+    lat?: number;
+
+    lng?: number;
+  }
+
+  export interface Place {
+    id?: number;
+
+    address?: string;
+
+    ave_review_rating?: number;
+
+    feature_id?: string;
+
+    google_place_id?: string;
+
+    google_place_serial?: string;
+
+    latitude?: string;
+
+    longitude?: string;
+
+    main_category?: string;
+
+    map_url?: string;
+
+    name?: string;
+
+    phone?: string;
+
+    place_url?: string;
+
+    ranking?: string | null;
+
+    related_categories?: Array<string>;
+
+    review_count?: number;
+
+    thumbnail_url?: string;
+
+    website_url?: string;
+  }
+
+  export interface ScheduleConfig {
+    id?: number;
+
+    ai_recurring?: number;
+
+    created_at?: string;
+
+    delete_oldpost_on_recurring?: number;
+
+    is_recurring?: number;
+
+    last_schedule_ran_at?: string | null;
+
+    recurring_count?: number;
+
+    repeat_every?: number;
+
+    repeat_on?: number;
+
+    repeat_type?: string;
+
+    scheduled_at?: string;
+
+    status?: string;
+
+    stop_reason?: string;
+
+    timezone?: string;
+
+    updated_at?: string;
+  }
+}
+
+export interface HeatmapScheduleListResponse {
   current_page?: number;
 
-  data?: Array<HeatmapScheduleListSchedulesResponse.Data>;
+  data?: Array<HeatmapScheduleListResponse.Data>;
 
   first_page_url?: string;
 
@@ -297,7 +507,7 @@ export interface HeatmapScheduleListSchedulesResponse {
 
   last_page_url?: string;
 
-  links?: Array<HeatmapScheduleListSchedulesResponse.Link>;
+  links?: Array<HeatmapScheduleListResponse.Link>;
 
   next_page_url?: string | null;
 
@@ -312,7 +522,7 @@ export interface HeatmapScheduleListSchedulesResponse {
   total?: number;
 }
 
-export namespace HeatmapScheduleListSchedulesResponse {
+export namespace HeatmapScheduleListResponse {
   export interface Data {
     id?: number;
 
@@ -438,14 +648,14 @@ export namespace HeatmapScheduleListSchedulesResponse {
   }
 }
 
-export interface HeatmapSchedulePauseScheduleResponse {
+export interface HeatmapSchedulePauseResponse {
   id?: number;
 
   draw_type?: string | null;
 
   google_location?: string | null;
 
-  grid_points?: Array<HeatmapSchedulePauseScheduleResponse.GridPoint>;
+  grid_points?: Array<HeatmapSchedulePauseResponse.GridPoint>;
 
   grid_size?: string | null;
 
@@ -461,13 +671,13 @@ export interface HeatmapSchedulePauseScheduleResponse {
 
   name?: string;
 
-  place?: HeatmapSchedulePauseScheduleResponse.Place;
+  place?: HeatmapSchedulePauseResponse.Place;
 
   place_id?: number;
 
   radius?: string | null;
 
-  schedule_config?: HeatmapSchedulePauseScheduleResponse.ScheduleConfig;
+  schedule_config?: HeatmapSchedulePauseResponse.ScheduleConfig;
 
   status?: string;
 
@@ -476,7 +686,7 @@ export interface HeatmapSchedulePauseScheduleResponse {
   zoom_level?: string | null;
 }
 
-export namespace HeatmapSchedulePauseScheduleResponse {
+export namespace HeatmapSchedulePauseResponse {
   export interface GridPoint {
     lat?: number;
 
@@ -554,14 +764,14 @@ export namespace HeatmapSchedulePauseScheduleResponse {
   }
 }
 
-export interface HeatmapScheduleResumeScheduleResponse {
+export interface HeatmapScheduleResumeResponse {
   id?: number;
 
   draw_type?: string | null;
 
   google_location?: string | null;
 
-  grid_points?: Array<HeatmapScheduleResumeScheduleResponse.GridPoint>;
+  grid_points?: Array<HeatmapScheduleResumeResponse.GridPoint>;
 
   grid_size?: string | null;
 
@@ -577,13 +787,13 @@ export interface HeatmapScheduleResumeScheduleResponse {
 
   name?: string;
 
-  place?: HeatmapScheduleResumeScheduleResponse.Place;
+  place?: HeatmapScheduleResumeResponse.Place;
 
   place_id?: number;
 
   radius?: string | null;
 
-  schedule_config?: HeatmapScheduleResumeScheduleResponse.ScheduleConfig;
+  schedule_config?: HeatmapScheduleResumeResponse.ScheduleConfig;
 
   status?: string;
 
@@ -592,7 +802,7 @@ export interface HeatmapScheduleResumeScheduleResponse {
   zoom_level?: string | null;
 }
 
-export namespace HeatmapScheduleResumeScheduleResponse {
+export namespace HeatmapScheduleResumeResponse {
   export interface GridPoint {
     lat?: number;
 
@@ -670,239 +880,7 @@ export namespace HeatmapScheduleResumeScheduleResponse {
   }
 }
 
-export interface HeatmapScheduleRetrieveScheduleResponse {
-  id?: number;
-
-  draw_type?: string | null;
-
-  google_location?: string | null;
-
-  grid_points?: Array<HeatmapScheduleRetrieveScheduleResponse.GridPoint>;
-
-  grid_size?: number;
-
-  keywords?: Array<string>;
-
-  lat?: string;
-
-  lead_source_id?: string | null;
-
-  length_unit?: string;
-
-  lng?: string;
-
-  name?: string;
-
-  place?: HeatmapScheduleRetrieveScheduleResponse.Place;
-
-  place_id?: number;
-
-  radius?: number;
-
-  schedule_config?: HeatmapScheduleRetrieveScheduleResponse.ScheduleConfig;
-
-  status?: string;
-
-  stop_reason?: string;
-
-  zoom_level?: string | null;
-}
-
-export namespace HeatmapScheduleRetrieveScheduleResponse {
-  export interface GridPoint {
-    lat?: string;
-
-    lng?: string;
-  }
-
-  export interface Place {
-    id?: number;
-
-    address?: string;
-
-    ave_review_rating?: number;
-
-    feature_id?: string;
-
-    google_place_id?: string;
-
-    google_place_serial?: string;
-
-    latitude?: string;
-
-    longitude?: string;
-
-    main_category?: string;
-
-    map_url?: string;
-
-    name?: string;
-
-    phone?: string;
-
-    place_url?: string;
-
-    ranking?: string | null;
-
-    related_categories?: Array<string>;
-
-    review_count?: number;
-
-    thumbnail_url?: string;
-
-    website_url?: string;
-  }
-
-  export interface ScheduleConfig {
-    id?: number;
-
-    ai_recurring?: number;
-
-    created_at?: string;
-
-    delete_oldpost_on_recurring?: number;
-
-    is_recurring?: number;
-
-    last_schedule_ran_at?: string | null;
-
-    recurring_count?: number;
-
-    repeat_every?: number;
-
-    repeat_on?: string;
-
-    repeat_type?: string;
-
-    scheduled_at?: string;
-
-    status?: string;
-
-    stop_reason?: string;
-
-    timezone?: string;
-
-    updated_at?: string;
-  }
-}
-
-export interface HeatmapScheduleUpdateScheduleResponse {
-  id?: number;
-
-  draw_type?: string;
-
-  google_location?: string | null;
-
-  grid_points?: Array<HeatmapScheduleUpdateScheduleResponse.GridPoint>;
-
-  grid_size?: number;
-
-  keywords?: Array<string>;
-
-  lat?: number;
-
-  lead_source_id?: string | null;
-
-  length_unit?: string;
-
-  lng?: number;
-
-  name?: string;
-
-  place?: HeatmapScheduleUpdateScheduleResponse.Place;
-
-  place_id?: number;
-
-  radius?: number;
-
-  schedule_config?: HeatmapScheduleUpdateScheduleResponse.ScheduleConfig;
-
-  status?: string;
-
-  stop_reason?: string;
-
-  zoom_level?: string | null;
-}
-
-export namespace HeatmapScheduleUpdateScheduleResponse {
-  export interface GridPoint {
-    lat?: number;
-
-    lng?: number;
-  }
-
-  export interface Place {
-    id?: number;
-
-    address?: string;
-
-    ave_review_rating?: number;
-
-    feature_id?: string;
-
-    google_place_id?: string;
-
-    google_place_serial?: string;
-
-    latitude?: string;
-
-    longitude?: string;
-
-    main_category?: string;
-
-    map_url?: string;
-
-    name?: string;
-
-    phone?: string;
-
-    place_url?: string;
-
-    ranking?: string | null;
-
-    related_categories?: Array<string>;
-
-    review_count?: number;
-
-    thumbnail_url?: string;
-
-    website_url?: string;
-  }
-
-  export interface ScheduleConfig {
-    id?: number;
-
-    ai_recurring?: number;
-
-    created_at?: string;
-
-    delete_oldpost_on_recurring?: number;
-
-    is_recurring?: number;
-
-    last_schedule_ran_at?: string | null;
-
-    recurring_count?: number;
-
-    repeat_every?: number;
-
-    repeat_on?: number;
-
-    repeat_type?: string;
-
-    scheduled_at?: string;
-
-    status?: string;
-
-    stop_reason?: string;
-
-    timezone?: string;
-
-    updated_at?: string;
-  }
-}
-
-export interface HeatmapScheduleListSchedulesParams {
+export interface HeatmapScheduleListParams {
   /**
    * Filter by lead source / company ID.
    */
@@ -987,21 +965,21 @@ export interface HeatmapScheduleListSchedulesParams {
   sort?: string;
 }
 
-export interface HeatmapScheduleCreateScheduleParams {
+export interface HeatmapScheduleCreateParams {
   /**
    * Grid and place configuration for the heatmap.
    */
-  heatmap_config: HeatmapScheduleCreateScheduleParams.HeatmapConfig;
+  heatmap_config: HeatmapScheduleCreateParams.HeatmapConfig;
 
   /**
    * Recurrence settings for the schedule.
    */
-  schedule_config: HeatmapScheduleCreateScheduleParams.ScheduleConfig;
+  schedule_config: HeatmapScheduleCreateParams.ScheduleConfig;
 
   search_types?: Array<'google_maps' | 'local_pack'>;
 }
 
-export namespace HeatmapScheduleCreateScheduleParams {
+export namespace HeatmapScheduleCreateParams {
   /**
    * Grid and place configuration for the heatmap.
    */
@@ -1127,19 +1105,19 @@ export namespace HeatmapScheduleCreateScheduleParams {
   }
 }
 
-export interface HeatmapScheduleUpdateScheduleParams {
+export interface HeatmapScheduleUpdateParams {
   /**
    * Updated grid and place configuration.
    */
-  heatmap_config: HeatmapScheduleUpdateScheduleParams.HeatmapConfig;
+  heatmap_config: HeatmapScheduleUpdateParams.HeatmapConfig;
 
   /**
    * Updated recurrence settings.
    */
-  schedule_config: HeatmapScheduleUpdateScheduleParams.ScheduleConfig;
+  schedule_config: HeatmapScheduleUpdateParams.ScheduleConfig;
 }
 
-export namespace HeatmapScheduleUpdateScheduleParams {
+export namespace HeatmapScheduleUpdateParams {
   /**
    * Updated grid and place configuration.
    */
@@ -1187,14 +1165,14 @@ export namespace HeatmapScheduleUpdateScheduleParams {
 
 export declare namespace HeatmapSchedules {
   export {
-    type HeatmapScheduleCreateScheduleResponse as HeatmapScheduleCreateScheduleResponse,
-    type HeatmapScheduleListSchedulesResponse as HeatmapScheduleListSchedulesResponse,
-    type HeatmapSchedulePauseScheduleResponse as HeatmapSchedulePauseScheduleResponse,
-    type HeatmapScheduleResumeScheduleResponse as HeatmapScheduleResumeScheduleResponse,
-    type HeatmapScheduleRetrieveScheduleResponse as HeatmapScheduleRetrieveScheduleResponse,
-    type HeatmapScheduleUpdateScheduleResponse as HeatmapScheduleUpdateScheduleResponse,
-    type HeatmapScheduleListSchedulesParams as HeatmapScheduleListSchedulesParams,
-    type HeatmapScheduleCreateScheduleParams as HeatmapScheduleCreateScheduleParams,
-    type HeatmapScheduleUpdateScheduleParams as HeatmapScheduleUpdateScheduleParams,
+    type HeatmapScheduleCreateResponse as HeatmapScheduleCreateResponse,
+    type HeatmapScheduleRetrieveResponse as HeatmapScheduleRetrieveResponse,
+    type HeatmapScheduleUpdateResponse as HeatmapScheduleUpdateResponse,
+    type HeatmapScheduleListResponse as HeatmapScheduleListResponse,
+    type HeatmapSchedulePauseResponse as HeatmapSchedulePauseResponse,
+    type HeatmapScheduleResumeResponse as HeatmapScheduleResumeResponse,
+    type HeatmapScheduleListParams as HeatmapScheduleListParams,
+    type HeatmapScheduleCreateParams as HeatmapScheduleCreateParams,
+    type HeatmapScheduleUpdateParams as HeatmapScheduleUpdateParams,
   };
 }

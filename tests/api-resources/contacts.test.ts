@@ -9,8 +9,8 @@ const client = new ThriveMcp({
 
 describe('resource contacts', () => {
   // Mock server tests are disabled
-  test.skip('listContacts', async () => {
-    const responsePromise = client.public.api.v1.contacts.listContacts();
+  test.skip('list', async () => {
+    const responsePromise = client.contacts.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,10 +21,10 @@ describe('resource contacts', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('listContacts: request options and params are passed correctly', async () => {
+  test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.public.api.v1.contacts.listContacts(
+      client.contacts.list(
         {
           client: [5],
           company_id: 3,
@@ -48,8 +48,8 @@ describe('resource contacts', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('retrieveContact', async () => {
-    const responsePromise = client.public.api.v1.contacts.retrieveContact(42);
+  test.skip('retrieve', async () => {
+    const responsePromise = client.contacts.retrieve(42);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -60,8 +60,8 @@ describe('resource contacts', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('contactTimeline', async () => {
-    const responsePromise = client.public.api.v1.contacts.contactTimeline(42);
+  test.skip('timeline', async () => {
+    const responsePromise = client.contacts.timeline(42);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -72,10 +72,10 @@ describe('resource contacts', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('contactTimeline: request options and params are passed correctly', async () => {
+  test.skip('timeline: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.public.api.v1.contacts.contactTimeline(
+      client.contacts.timeline(
         42,
         {
           cursor: 'eyJ0IjoiMjAyNi0wNi0yNCAxNDowNTowMCIsInMiOiJub3RlIiwiaSI6MX0=',
@@ -88,8 +88,8 @@ describe('resource contacts', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('contactConversations', async () => {
-    const responsePromise = client.public.api.v1.contacts.contactConversations(42);
+  test.skip('conversations', async () => {
+    const responsePromise = client.contacts.conversations(42);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -100,10 +100,10 @@ describe('resource contacts', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('contactConversations: request options and params are passed correctly', async () => {
+  test.skip('conversations: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.public.api.v1.contacts.contactConversations(
+      client.contacts.conversations(
         42,
         {
           channel: 'sms',

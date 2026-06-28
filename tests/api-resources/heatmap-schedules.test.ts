@@ -9,8 +9,8 @@ const client = new ThriveMcp({
 
 describe('resource heatmapSchedules', () => {
   // Mock server tests are disabled
-  test.skip('listSchedules', async () => {
-    const responsePromise = client.public.api.v1.heatmapSchedules.listSchedules();
+  test.skip('list', async () => {
+    const responsePromise = client.heatmapSchedules.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,10 +21,10 @@ describe('resource heatmapSchedules', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('listSchedules: request options and params are passed correctly', async () => {
+  test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.public.api.v1.heatmapSchedules.listSchedules(
+      client.heatmapSchedules.list(
         {
           'filter[company_id]': 3,
           'filter[created_at][end_date]': '2026-04-30',
@@ -49,8 +49,8 @@ describe('resource heatmapSchedules', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('createSchedule: only required params', async () => {
-    const responsePromise = client.public.api.v1.heatmapSchedules.createSchedule({
+  test.skip('create: only required params', async () => {
+    const responsePromise = client.heatmapSchedules.create({
       heatmap_config: {
         grid_points: [
           { lat: 28.174798245111, lng: -81.429216072674 },
@@ -75,8 +75,8 @@ describe('resource heatmapSchedules', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('createSchedule: required and optional params', async () => {
-    const response = await client.public.api.v1.heatmapSchedules.createSchedule({
+  test.skip('create: required and optional params', async () => {
+    const response = await client.heatmapSchedules.create({
       heatmap_config: {
         grid_points: [
           { lat: 28.174798245111, lng: -81.429216072674 },
@@ -105,8 +105,8 @@ describe('resource heatmapSchedules', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('retrieveSchedule', async () => {
-    const responsePromise = client.public.api.v1.heatmapSchedules.retrieveSchedule(10);
+  test.skip('retrieve', async () => {
+    const responsePromise = client.heatmapSchedules.retrieve(10);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -117,8 +117,8 @@ describe('resource heatmapSchedules', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('updateSchedule: only required params', async () => {
-    const responsePromise = client.public.api.v1.heatmapSchedules.updateSchedule(89465, {
+  test.skip('update: only required params', async () => {
+    const responsePromise = client.heatmapSchedules.update(89465, {
       heatmap_config: { name: 'Weekly Roofing Check Updated', place_id: 12 },
       schedule_config: { repeat_type: 'month' },
     });
@@ -132,8 +132,8 @@ describe('resource heatmapSchedules', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('updateSchedule: required and optional params', async () => {
-    const response = await client.public.api.v1.heatmapSchedules.updateSchedule(89465, {
+  test.skip('update: required and optional params', async () => {
+    const response = await client.heatmapSchedules.update(89465, {
       heatmap_config: {
         name: 'Weekly Roofing Check Updated',
         place_id: 12,
@@ -145,8 +145,8 @@ describe('resource heatmapSchedules', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('pauseSchedule', async () => {
-    const responsePromise = client.public.api.v1.heatmapSchedules.pauseSchedule(10);
+  test.skip('pause', async () => {
+    const responsePromise = client.heatmapSchedules.pause(10);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -157,8 +157,8 @@ describe('resource heatmapSchedules', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('resumeSchedule', async () => {
-    const responsePromise = client.public.api.v1.heatmapSchedules.resumeSchedule(10);
+  test.skip('resume', async () => {
+    const responsePromise = client.heatmapSchedules.resume(10);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

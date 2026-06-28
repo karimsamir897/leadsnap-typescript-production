@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../../../core/resource';
-import { APIPromise } from '../../../../core/api-promise';
-import { RequestOptions } from '../../../../internal/request-options';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
 
 /**
  *
@@ -17,33 +17,32 @@ export class FormSubmissions extends APIResource {
    *
    * @example
    * ```ts
-   * const response =
-   *   await client.public.api.v1.formSubmissions.listFormSubmissions();
+   * const formSubmissions = await client.formSubmissions.list();
    * ```
    */
-  listFormSubmissions(
-    query: FormSubmissionListFormSubmissionsParams | null | undefined = {},
+  list(
+    query: FormSubmissionListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<FormSubmissionListFormSubmissionsResponse> {
+  ): APIPromise<FormSubmissionListResponse> {
     return this._client.get('/public/api/v1/form-submissions', { query, ...options });
   }
 }
 
-export interface FormSubmissionListFormSubmissionsResponse {
+export interface FormSubmissionListResponse {
   current_page?: number;
 
-  data?: Array<FormSubmissionListFormSubmissionsResponse.Data>;
+  data?: Array<FormSubmissionListResponse.Data>;
 
   last_page?: number;
 
-  meta?: FormSubmissionListFormSubmissionsResponse.Meta;
+  meta?: FormSubmissionListResponse.Meta;
 
   per_page?: number;
 
   total?: number;
 }
 
-export namespace FormSubmissionListFormSubmissionsResponse {
+export namespace FormSubmissionListResponse {
   export interface Data {
     id?: number;
 
@@ -109,7 +108,7 @@ export namespace FormSubmissionListFormSubmissionsResponse {
   }
 }
 
-export interface FormSubmissionListFormSubmissionsParams {
+export interface FormSubmissionListParams {
   /**
    * Filter by client (lead group) ids.
    */
@@ -164,7 +163,7 @@ export interface FormSubmissionListFormSubmissionsParams {
 
 export declare namespace FormSubmissions {
   export {
-    type FormSubmissionListFormSubmissionsResponse as FormSubmissionListFormSubmissionsResponse,
-    type FormSubmissionListFormSubmissionsParams as FormSubmissionListFormSubmissionsParams,
+    type FormSubmissionListResponse as FormSubmissionListResponse,
+    type FormSubmissionListParams as FormSubmissionListParams,
   };
 }

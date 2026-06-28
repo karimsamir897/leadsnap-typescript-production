@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../../../core/resource';
-import { APIPromise } from '../../../../core/api-promise';
-import { RequestOptions } from '../../../../internal/request-options';
-import { path } from '../../../../internal/utils/path';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 /**
  *
@@ -21,21 +21,18 @@ export class HeatmapPoints extends APIResource {
    *
    * @example
    * ```ts
-   * const response =
-   *   await client.public.api.v1.heatmapPoints.generateGridPoints(
-   *     {
-   *       grid_radius: 3495,
-   *       grid_size: 3,
-   *       lat: 44.670381143996,
-   *       lng: -88.122418774951,
-   *     },
-   *   );
+   * const response = await client.heatmapPoints.generateGrid({
+   *   grid_radius: 3495,
+   *   grid_size: 3,
+   *   lat: 44.670381143996,
+   *   lng: -88.122418774951,
+   * });
    * ```
    */
-  generateGridPoints(
-    body: HeatmapPointGenerateGridPointsParams,
+  generateGrid(
+    body: HeatmapPointGenerateGridParams,
     options?: RequestOptions,
-  ): APIPromise<HeatmapPointGenerateGridPointsResponse> {
+  ): APIPromise<HeatmapPointGenerateGridResponse> {
     return this._client.post('/public/api/v1/heatmap/grid-points', { body, ...options });
   }
 
@@ -45,38 +42,23 @@ export class HeatmapPoints extends APIResource {
    *
    * @example
    * ```ts
-   * const response =
-   *   await client.public.api.v1.heatmapPoints.retrieveHeatmapPoint(
-   *     129410,
-   *     { heatmap_id: 425591 },
-   *   );
+   * const heatmapPoint = await client.heatmapPoints.retrieve(
+   *   129410,
+   *   { heatmap_id: 425591 },
+   * );
    * ```
    */
-  retrieveHeatmapPoint(
+  retrieve(
     pointID: number,
-    params: HeatmapPointRetrieveHeatmapPointParams,
+    params: HeatmapPointRetrieveParams,
     options?: RequestOptions,
-  ): APIPromise<HeatmapPointRetrieveHeatmapPointResponse> {
+  ): APIPromise<HeatmapPointRetrieveResponse> {
     const { heatmap_id } = params;
     return this._client.get(path`/public/api/v1/heatmaps/${heatmap_id}/points/${pointID}`, options);
   }
 }
 
-export interface HeatmapPointGenerateGridPointsResponse {
-  count?: number;
-
-  points?: Array<HeatmapPointGenerateGridPointsResponse.Point>;
-}
-
-export namespace HeatmapPointGenerateGridPointsResponse {
-  export interface Point {
-    lat?: number;
-
-    lng?: number;
-  }
-}
-
-export interface HeatmapPointRetrieveHeatmapPointResponse {
+export interface HeatmapPointRetrieveResponse {
   id?: number;
 
   index?: number;
@@ -85,12 +67,12 @@ export interface HeatmapPointRetrieveHeatmapPointResponse {
 
   lng?: number;
 
-  places?: Array<HeatmapPointRetrieveHeatmapPointResponse.Place>;
+  places?: Array<HeatmapPointRetrieveResponse.Place>;
 
   rank?: number;
 }
 
-export namespace HeatmapPointRetrieveHeatmapPointResponse {
+export namespace HeatmapPointRetrieveResponse {
   export interface Place {
     id?: number;
 
@@ -108,7 +90,21 @@ export namespace HeatmapPointRetrieveHeatmapPointResponse {
   }
 }
 
-export interface HeatmapPointGenerateGridPointsParams {
+export interface HeatmapPointGenerateGridResponse {
+  count?: number;
+
+  points?: Array<HeatmapPointGenerateGridResponse.Point>;
+}
+
+export namespace HeatmapPointGenerateGridResponse {
+  export interface Point {
+    lat?: number;
+
+    lng?: number;
+  }
+}
+
+export interface HeatmapPointGenerateGridParams {
   /**
    * Spacing between grid points, **in meters** (e.g. `1000` = 1 km, `1609` ≈ 1
    * mile).
@@ -138,7 +134,7 @@ export interface HeatmapPointGenerateGridPointsParams {
   polygon?: { [key: string]: unknown } | null;
 }
 
-export interface HeatmapPointRetrieveHeatmapPointParams {
+export interface HeatmapPointRetrieveParams {
   /**
    * The ID of the heatmap.
    */
@@ -147,9 +143,9 @@ export interface HeatmapPointRetrieveHeatmapPointParams {
 
 export declare namespace HeatmapPoints {
   export {
-    type HeatmapPointGenerateGridPointsResponse as HeatmapPointGenerateGridPointsResponse,
-    type HeatmapPointRetrieveHeatmapPointResponse as HeatmapPointRetrieveHeatmapPointResponse,
-    type HeatmapPointGenerateGridPointsParams as HeatmapPointGenerateGridPointsParams,
-    type HeatmapPointRetrieveHeatmapPointParams as HeatmapPointRetrieveHeatmapPointParams,
+    type HeatmapPointRetrieveResponse as HeatmapPointRetrieveResponse,
+    type HeatmapPointGenerateGridResponse as HeatmapPointGenerateGridResponse,
+    type HeatmapPointGenerateGridParams as HeatmapPointGenerateGridParams,
+    type HeatmapPointRetrieveParams as HeatmapPointRetrieveParams,
   };
 }
