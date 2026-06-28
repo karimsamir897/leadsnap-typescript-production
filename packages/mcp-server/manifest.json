@@ -1,0 +1,45 @@
+{
+  "dxt_version": "0.2",
+  "name": "leadsnap-test-mcp-server",
+  "version": "0.0.1",
+  "description": "The official MCP Server for the Thrive Mcp API",
+  "author": {
+    "name": "Thrive Mcp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karimsamir897/leadsnap-typescript-production.git"
+  },
+  "homepage": "https://github.com/karimsamir897/leadsnap-typescript-production/tree/main/packages/mcp-server#readme",
+  "server": {
+    "type": "node",
+    "entry_point": "index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/index.js"
+      ],
+      "env": {
+        "THRIVE_MCP_BEARER_TOKEN": "${user_config.THRIVE_MCP_BEARER_TOKEN}"
+      }
+    }
+  },
+  "user_config": {
+    "THRIVE_MCP_BEARER_TOKEN": {
+      "title": "bearer_token",
+      "description": "Authenticate using a Sanctum bearer token. Use @unauthenticated on a route method to mark public endpoints.",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "tools": [],
+  "tools_generated": true,
+  "compatibility": {
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  },
+  "keywords": [
+    "api"
+  ]
+}
