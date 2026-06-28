@@ -1,0 +1,12 @@
+{
+  "tasks": {
+    "start": "deno run --allow-net --allow-env --allow-read main.ts",
+    "dev": "deno run --allow-net --allow-env --allow-read --watch main.ts"
+  },
+  "lock": false,
+  "deploy": {
+    "org": "leadsnap",
+    "app": "ls-code-sandbox-1"
+  }
+}
+
