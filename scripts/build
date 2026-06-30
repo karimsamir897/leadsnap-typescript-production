@@ -40,19 +40,13 @@ cp tsconfig.dist-src.json dist/src/tsconfig.json
 
 node scripts/utils/postprocess-files.cjs
 
-# make sure that nothing crashes when we require the output CJS or
-# import the output ESM
+# Check that the built output is valid
 (cd dist && node -e 'require("leadsnap-test-typescript")')
-(cd dist && node -e 'import("leadsnap-test-typescript")' --input-type=module)
+(cd dist && node --input-type=module -e 'import("leadsnap-test-typescript")')
 
-if [ -e ./scripts/build-deno ]
-then
+if [ -e "./scripts/build-deno" ]; then
   ./scripts/build-deno
 fi
-# build all sub-packages
-for dir in packages/*; do
-  if [ -d "$dir" ]; then
-      (cd "$dir" && pnpm m tsc --build --verbose packages/mcp-server/tsconfig.build.json
-pnpm m tsc --build --verbose tsconfig.build.json)
-  fi
-done
+
+pnpm m tsc --build --verbose packages/mcp-server/tsconfig.build.json
+pnpm m tsc --build --verbose tsconfig.build.json
