@@ -145,7 +145,9 @@ After connecting:
   Returns `2`.
 - **execute** (real Thrive call — needs a valid token + the `Thrive` environment)
   ```json
-  { "code": "async function run(client){ return await client.public.api.v1.heatmap.generateGridPoints({ grid_radius: 500, grid_size: 7, lat: 37.7749, lng: -122.4194 }); }" }
+  {
+    "code": "async function run(client){ return await client.public.api.v1.heatmap.generateGridPoints({ grid_radius: 500, grid_size: 7, lat: 37.7749, lng: -122.4194 }); }"
+  }
   ```
 
 ---
@@ -166,12 +168,12 @@ After deploying:
 
 ## Configuration reference
 
-| Name | Where | Required | Purpose |
-|---|---|---|---|
-| `CODE_SANDBOX_URL` | `wrangler.jsonc` → `vars` | yes | Remote Deno sandbox URL for the `execute` tool. |
-| `OAUTH_KV` | `wrangler.jsonc` → `kv_namespaces` | yes | KV namespace backing OAuth tokens/grants. |
-| `MCP_OBJECT` | `wrangler.jsonc` → `durable_objects` | yes | Durable Object hosting each MCP session. |
-| `SANDBOX_SHARED_SECRET` | secret / `.dev.vars` | no | Forwarded as the `Authorization` header to the sandbox. |
+| Name                    | Where                                | Required | Purpose                                                 |
+| ----------------------- | ------------------------------------ | -------- | ------------------------------------------------------- |
+| `CODE_SANDBOX_URL`      | `wrangler.jsonc` → `vars`            | yes      | Remote Deno sandbox URL for the `execute` tool.         |
+| `OAUTH_KV`              | `wrangler.jsonc` → `kv_namespaces`   | yes      | KV namespace backing OAuth tokens/grants.               |
+| `MCP_OBJECT`            | `wrangler.jsonc` → `durable_objects` | yes      | Durable Object hosting each MCP session.                |
+| `SANDBOX_SHARED_SECRET` | secret / `.dev.vars`                 | no       | Forwarded as the `Authorization` header to the sandbox. |
 
 **Session inputs** (collected per-connection on the OAuth consent screen, not configured here):
 the **bearer token** (forwarded to the sandbox as `THRIVE_MCP_BEARER_TOKEN`) and the **environment**
@@ -186,7 +188,7 @@ the **bearer token** (forwarded to the sandbox as `THRIVE_MCP_BEARER_TOKEN`) and
 - `search_docs`: on session init, `setLocalSearch(await LocalDocsSearch.create())` builds an in-memory
   index from the SDK's embedded methods + README (no `docsDir`, so no filesystem access — Worker-safe).
 - `execute`: `POST`s to `CODE_SANDBOX_URL` with `x-stainless-mcp-client-envs:
-  {"THRIVE_MCP_BEARER_TOKEN": "…"}`, body `{ project_name, code, intent?, client_opts: { environment } }`,
+{"THRIVE_MCP_BEARER_TOKEN": "…"}`, body `{ project_name, code, intent?, client_opts: { environment } }`,
   and optional `Authorization: <SANDBOX_SHARED_SECRET>`; it maps the sandbox's
   `{ is_error, result, log_lines, err_lines }` back into MCP content blocks.
 
@@ -212,10 +214,10 @@ the **bearer token** (forwarded to the sandbox as `THRIVE_MCP_BEARER_TOKEN`) and
 
 ## Scripts
 
-| Command | Description |
-|---|---|
-| `npm run dev` | Run locally with `wrangler dev` (http://localhost:8787). |
-| `npm run deploy` | Deploy to Cloudflare. |
-| `npm run typecheck` | `tsc --noEmit`. |
-| `npm run cf-typegen` | Regenerate `worker-configuration.d.ts` from `wrangler.jsonc`. |
-| `npm run format` / `npm run lint:fix` | Biome format / lint. |
+| Command                               | Description                                                   |
+| ------------------------------------- | ------------------------------------------------------------- |
+| `npm run dev`                         | Run locally with `wrangler dev` (http://localhost:8787).      |
+| `npm run deploy`                      | Deploy to Cloudflare.                                         |
+| `npm run typecheck`                   | `tsc --noEmit`.                                               |
+| `npm run cf-typegen`                  | Regenerate `worker-configuration.d.ts` from `wrangler.jsonc`. |
+| `npm run format` / `npm run lint:fix` | Biome format / lint.                                          |

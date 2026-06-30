@@ -94,7 +94,9 @@ export async function runRemoteExecute(params: {
     return asError('CODE_SANDBOX_URL is not configured on the worker.');
   }
   if (!bearerToken) {
-    return asError('Missing bearer token for this session; cannot run code. Re-authenticate the MCP connection.');
+    return asError(
+      'Missing bearer token for this session; cannot run code. Re-authenticate the MCP connection.',
+    );
   }
 
   const headers: Record<string, string> = {
@@ -126,7 +128,9 @@ export async function runRemoteExecute(params: {
     out = (await resp.json()) as SandboxOutput;
   } catch {
     const text = await resp.text().catch(() => '');
-    return asError(`Code sandbox returned a non-JSON response (status ${resp.status}): ${text.slice(0, 500)}`);
+    return asError(
+      `Code sandbox returned a non-JSON response (status ${resp.status}): ${text.slice(0, 500)}`,
+    );
   }
 
   // Map { is_error, result, log_lines, err_lines } -> MCP content blocks, mirroring the generated
