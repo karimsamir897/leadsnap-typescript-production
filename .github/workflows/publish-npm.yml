@@ -16,6 +16,7 @@ jobs:
   publish:
     name: publish
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: write
 
