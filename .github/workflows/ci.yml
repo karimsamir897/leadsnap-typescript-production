@@ -40,7 +40,7 @@ jobs:
         run: ./scripts/lint
 
   build:
-    timeout-minutes: 5
+    timeout-minutes: 15
     name: build
     runs-on: ubuntu-latest
     if: (github.event_name == 'push' || github.event.pull_request.head.repo.fork) && (github.event_name != 'push' || github.event.head_commit.message != 'codegen metadata')

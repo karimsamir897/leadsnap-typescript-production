@@ -52,6 +52,7 @@ fi
 # build all sub-packages
 for dir in packages/*; do
   if [ -d "$dir" ]; then
-      (cd "$dir" && pnpm build)
+      (cd "$dir" && pnpm m tsc --build --verbose packages/mcp-server/tsconfig.build.json
+pnpm m tsc --build --verbose tsconfig.build.json)
   fi
 done
