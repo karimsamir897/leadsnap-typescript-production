@@ -1,6 +1,6 @@
 {
   "name": "leadsnap-test-mcp-server",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "The official MCP Server for the Thrive Mcp API",
   "author": "Thrive Mcp <>",
   "types": "dist/index.d.ts",

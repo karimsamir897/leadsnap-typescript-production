@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/karimsamir897/leadsnap-typescript-production/compare/v0.3.0...v0.4.0) (2026-06-30)
+
+
+### Features
+
+* update npm publisg ([3078b07](https://github.com/karimsamir897/leadsnap-typescript-production/commit/3078b07eba59e24581534ff11c1b3dc86abb0c43))
+
 ## [0.3.0](https://github.com/karimsamir897/leadsnap-typescript-production/compare/v0.2.0...v0.3.0) (2026-06-30)
 
 
