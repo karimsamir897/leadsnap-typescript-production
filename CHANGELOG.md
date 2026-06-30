@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.0](https://github.com/karimsamir897/leadsnap-typescript-production/compare/v0.2.0...v0.3.0) (2026-06-30)
+
+
+### Features
+
+* fix formating ([92a5487](https://github.com/karimsamir897/leadsnap-typescript-production/commit/92a5487af85a05d8f164889194c05e5910f3032b))
+* fix formating ([2517598](https://github.com/karimsamir897/leadsnap-typescript-production/commit/251759856fe25b8910f6fc93371c7a1bde8d5689))
+* ignore custom cf worker from build ([a8439a0](https://github.com/karimsamir897/leadsnap-typescript-production/commit/a8439a0a09f59ce10144a02be22ab80db52a2eac))
+
 ## [0.2.0](https://github.com/karimsamir897/leadsnap-typescript-production/compare/v0.1.0...v0.2.0) (2026-06-30)
 
 
