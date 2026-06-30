@@ -65,7 +65,7 @@ const INSTRUCTIONS_FETCH_TIMEOUT_MS = 5000;
 
 function fallbackMcpServer(): McpServer {
   return new McpServer(
-    { name: 'leadsnap_test_typescript_api', version: '0.1.0' },
+    { name: 'leadsnap_test_typescript_api', version: '0.2.0' },
     { capabilities: { tools: {}, logging: {} } },
   );
 }
