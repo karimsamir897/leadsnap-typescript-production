@@ -35,6 +35,9 @@ jobs:
         run: |
           pnpm install
 
+      - name: Build packages
+        run: ./scripts/build
+
       - name: Publish to NPM
         run: |
           if [ -n "$INPUT_PATH" ]; then
