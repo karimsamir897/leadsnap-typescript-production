@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.0](https://github.com/karimsamir897/leadsnap-typescript-production/compare/v0.1.0...v0.2.0) (2026-06-30)
+
+
+### Features
+
+* update npm version ([24028be](https://github.com/karimsamir897/leadsnap-typescript-production/commit/24028be2f4b9fbe25a89709d86d518565ca522d9))
+* update npm version ([59530fc](https://github.com/karimsamir897/leadsnap-typescript-production/commit/59530fc5a71584224efbb722b7cf1e2f9b3fe31b))
+
 ## [0.1.0](https://github.com/karimsamir897/leadsnap-typescript-production/compare/v0.0.1...v0.1.0) (2026-06-29)
 
 
